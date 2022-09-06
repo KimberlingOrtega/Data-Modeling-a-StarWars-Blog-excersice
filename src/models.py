@@ -13,7 +13,8 @@ class User(Base):
     id = Column(Integer, primary_key=True)
     user_name = Column(String(30), nullable=False, unique=True)
     email = Column(String(80), nullable=False, unique=True)
-    favorite_id = Column(Integer, ForeignKey('favorite.id'))
+    password = Column(String(100),nullable=False)
+    
     def verifyLogin(self):
         """verify login"""
     
@@ -29,7 +30,8 @@ class Favorite(Base):
     character_id = Column(Integer, ForeignKey('character.id'), nullable=True)
     Vehicle_id = Column(Integer, ForeignKey('vehicle.id'), nullable=True)
     planet_id = Column(Integer, ForeignKey('planet.id'), nullable=True)
-
+    user_id = Column(Integer, ForeignKey('user.id'), nullable=True)
+    
 class Character(Base):
     __tablename__= 'character'
     id = Column(Integer, primary_key=True)
